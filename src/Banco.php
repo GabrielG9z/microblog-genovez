@@ -1,5 +1,5 @@
 <?php
-namespace MicroBlog;
+namespace Microblog;
 
 /* Indicamos o uso das classes nativas do PHP (ou seja,
 classes que não fazem parte do nosso namespace) */
