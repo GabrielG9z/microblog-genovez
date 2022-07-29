@@ -10,6 +10,11 @@ $sessao = new ControleDeAcesso;
 // Executamos verificaAcesso para checar se tem alguém logado
 $sessao->verificaAcesso();
 
+//Se o parâmetro ?sair existir, então faça o logout
+if(isset($_GET['sair'])) $sessao->logout();
+
+
+
 $pagina = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
@@ -36,7 +41,58 @@ $pagina = basename($_SERVER['PHP_SELF']);
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <?php if($_SESSION ['tipo'] == 'admin') {?>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="meu-perfil.php">Meu perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="categorias.php">Categorias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="noticias.php">Notícias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="usuarios.php">Usuários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.php" target="_blank">Área pública</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-bold" href="?sair"> <i class="bi bi-x-circle"></i> Sair</a>
+            </li>
+
+</div>
+</div>
+<?php } else {?>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="meu-perfil.php">Meu perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="noticias.php">Notícias</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../index.php" target="_blank">Área pública</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-bold" href="?sair"> <i class="bi bi-x-circle"></i> Sair</a>
+            </li>
+
+
+    <?php } ?>
+
+    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
@@ -58,12 +114,12 @@ $pagina = basename($_SERVER['PHP_SELF']);
                 <a class="nav-link" href="../index.php" target="_blank">Área pública</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold" href=""> <i class="bi bi-x-circle"></i> Sair</a>
+                <a class="nav-link fw-bold" href="?sair"> <i class="bi bi-x-circle"></i> Sair</a>
             </li>
         </ul>
 
     </div>
-  </div>
+  </div> -->
 </nav>
 
 </header>

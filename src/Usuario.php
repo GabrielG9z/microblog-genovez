@@ -85,7 +85,7 @@ final class Usuario {
         } catch (Exception $erro) {
             die("Erro: ". $erro->getMessage());
         }
-        return $resultado;
+        return $resultado;  
     }
 
     public function atualizar():void {

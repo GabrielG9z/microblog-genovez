@@ -1,5 +1,6 @@
 <?php
 
+use Microblog\ControleDeAcesso;
 use Microblog\Usuario;
 use Microblog\Utilitarios;
 
@@ -12,6 +13,10 @@ if(isset($_GET['acesso_proibido']) ){
 	$feedback = 'Você deve preencher os dois campos <i class="bi bi-exclamation-lg"></i>';
 } elseif(isset($_GET['nao_encontrado']) ){
 	$feedback = 'Usuário não encontrado <i class="bi bi-exclamation-lg"></i>';
+} elseif(isset($_GET['senha_incorreta']) ){
+	$feedback = 'Senha incorreta <i class="bi bi-exclamation-lg"></i>';
+} elseif(isset($_GET['logout']) ){
+	$feedback = 'Você saiu do sistema !';
 }
 ?>
 
@@ -65,9 +70,14 @@ if(isset($_POST['entrar'])){
 
 			/* Verificação desenha e login */
 			if(password_verify($_POST['senha'], $dados['senha'])){
-				echo "Pode entrar!";
+				
+				//Estando certa, será feito o login
+				$sessao = new ControleDeAcesso;
+				$sessao->login($dados['id'], $dados['nome'], $dados['tipo']);
+				header("location:admin/"); 
 			}else {
-				echo "Cai fora";
+				//Caso contrário, mantenha na página login e apresente uma mensagem
+				header("location:login.php?senha_incorreta");
 			}	
 		}
 
