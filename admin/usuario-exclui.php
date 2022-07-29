@@ -7,6 +7,7 @@ require_once '../vendor/autoload.php';
 
 $sessao = new ControleDeAcesso;
 $sessao->verificaAcesso();
+$sessao->verificaAcessoAdmin();
 
 //Criamos um objeto para poder acessar os recursos da classe,  
 $usuario = new Usuario;
@@ -19,3 +20,5 @@ $usuario->excluir();
 
 //Após excluir, redirecionamos para a página de lista de usuários.
 header("location:usuarios.php");
+
+

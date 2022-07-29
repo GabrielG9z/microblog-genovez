@@ -38,4 +38,10 @@ final class ControleDeAcesso{
         die();
     }
 
+    public function verificaAcessoAdmin() {
+        if($_SESSION['tipo'] !== 'admin') {
+            header('location:../admin/nao-autorizado.php');
+        }
+    }
+
 }

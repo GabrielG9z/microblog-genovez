@@ -1,5 +1,9 @@
-<?php 
+<?php
+
+// todas as páginas que possuem cabeçalho não precisa instanciar um novo objeto pois já está sendo trazida pelo autoload.
 require_once "../inc/cabecalho-admin.php";
+
+$sessao->verificaAcessoAdmin();
 ?>
 
 

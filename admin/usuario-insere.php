@@ -1,8 +1,13 @@
 <?php
 
+
 use Microblog\Usuario;
 
+// TODAS AS PÁGINAS QUE ESTÃO COM INCLUDE CABEÇALHO NÃO PRECISAM DE INSTANCIAMENTO DE CLASSE POIS JÁ ESTÃO VINDO ATRAVÉS DO REQUIRE, (APENAS A EXCLUIR QUE NAO POSSUI CABEÇALHO DEVERÁ SER INSTANCIADA)
+
 require_once "../inc/cabecalho-admin.php";
+$sessao->verificaAcessoAdmin();
+
 
 if(isset($_POST['inserir']) ){
 	$usuario = new Usuario;

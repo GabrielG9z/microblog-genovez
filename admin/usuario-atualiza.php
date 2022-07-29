@@ -1,10 +1,14 @@
 <?php
+
+
 use Microblog\Usuario;
 use Microblog\Utilitarios;
 
 require_once "../inc/cabecalho-admin.php";
 
 $usuario = new Usuario;
+$sessao->verificaAcessoAdmin();
+
 $usuario->setId($_GET['id']);
 $dados = $usuario->listarUm();
 
