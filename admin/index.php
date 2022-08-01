@@ -1,14 +1,41 @@
 <?php
+// primeiro invocamos o objeto (Usuario)
+use Microblog\Usuario;
+
 require_once "../inc/cabecalho-admin.php";
+if(isset($_GET['perfil-atualizado']) ){
+	$feedback= '<i class="bi bi-person-x"></i> Perfil atualizado com sucesso! ';}
+
+
+    // Chamamos as funções que já foram programadas dentro do  Objeto
+$usuario = new Usuario;
+// Adicionamos uma sessao pra ser inicializada
+$usuario->setId($_SESSION['id']);
+
+// chamamos a função listar um e atribuimos à variável dados
+$dados = $usuario->listarUm();
 ?>
 
 
 <article class="p-5 my-4 rounded-3 bg-white shadow">
     <div class="container-fluid py-1">        
-        <h2 class="display-4">Olá <?=$_SESSION['nome']?></h2>
+
+    <!-- chamamos a variável dados com o parametro nome para ser exibida, pois a sessão só atualiza após for reiniciada -->
+        <h2 class="display-4">Olá <?=$_SESSION['nome']?>!</h2>
+
+
+        <!-- Fazemos uma condicional para um paragráfo ser exibido somente se a condição for verdadeira -->
+        <?php if(isset($feedback)){?>
+				<p class="my-2 alert alert-primary text-center">
+					<?=$feedback?>
+				</p>
+                <?php } ?> 
+
         <p class="fs-5">Você está no <b>painel de controle e administração</b> do
 		site Microblog e seu <b>nível de acesso</b> é <span class="badge bg-dark"> <?=$_SESSION['tipo']?> </span></p>
         <hr class="my-4">
+
+        <!-- aqui fazemos o controle de acesso das páginas caso admin, caso editor, a condicional será validada através do parâmetro de URL -->
 
     <?php if($_SESSION ['tipo'] == 'admin') {?>
 
